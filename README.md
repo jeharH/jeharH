@@ -17,6 +17,9 @@
     <a href="https://github.com/jeharH">
       <img src="https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
     </a>
+    <a href="https://jeharh.github.io/">
+      <img src="https://img.shields.io/badge/Portfolio-00C896?style=for-the-badge&logo=vercel&logoColor=0D1117" alt="Portfolio" />
+    </a>
   </p>
 </div>
 
