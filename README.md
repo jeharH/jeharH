@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
   <img src="./assets/jehar-avatar.png" width="180" alt="Foto de Jehar Henrique" />
 
   <h1>Jehar Henrique</h1>
@@ -32,7 +32,7 @@
 Atuo e estudo na intersecao entre **Data Analytics**, **Data Engineering**, **credito** e **automacao**.  
 Meu foco e transformar dados em processos confiaveis, analises bem explicadas e solucoes que ajudam na tomada de decisao.
 
-`Python` · `SQL` · `PySpark` · `Databricks` · `Cloud` · `Machine Learning` · `Automacao`
+`Python` | `SQL` | `PySpark` | `Databricks` | `Cloud` | `Machine Learning` | `Automacao`
 
 </div>
 
@@ -116,11 +116,14 @@ Modelo simples para classificacao ou previsao, com preparacao dos dados, treino,
 - Construindo projetos publicos com documentacao clara
 - Preparando certificacao em fundamentos de Azure
 
-## GitHub
+## Links principais
 
 <div align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=jeharH&show_icons=true&hide_border=true&title_color=00C896&icon_color=00C896&text_color=C9D1D9&bg_color=0D1117" alt="GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jeharH&layout=compact&hide_border=true&title_color=00C896&text_color=C9D1D9&bg_color=0D1117" alt="Top languages" />
+  <a href="https://jeharh.github.io/"><strong>Portfolio</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/jeharH?tab=repositories"><strong>Repositorios</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://www.linkedin.com/in/jehar-henrique/"><strong>LinkedIn</strong></a>
 </div>
 
 ---
@@ -131,8 +134,9 @@ Modelo simples para classificacao ou previsao, com preparacao dos dados, treino,
   </p>
 
   <p>
-    <a href="mailto:jeharhenrique8@gmail.com">jeharhenrique8@gmail.com</a> ·
-    <a href="https://www.linkedin.com/in/jehar-henrique/">LinkedIn</a> ·
+    <a href="mailto:jeharhenrique8@gmail.com">jeharhenrique8@gmail.com</a> |
+    <a href="https://www.linkedin.com/in/jehar-henrique/">LinkedIn</a> |
     <a href="https://github.com/jeharH">GitHub</a>
   </p>
 </div>
+
