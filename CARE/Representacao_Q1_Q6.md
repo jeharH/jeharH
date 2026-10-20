@@ -1,42 +1,15 @@
-# CARE — Representação das respostas
+# CARE — Representação das respostas (Etapa 3)
 
-Não há instância de dados fornecida: as respostas indicam como recuperar os resultados.
+Como não foram fornecidos registros de exemplo, as respostas explicam como encontrar as informações pelo modelo, seguindo o formato do entregável.
 
-## Q1 · Exames não requeridos nos últimos 30 dias
-
-**Caminho:** LABORATORIO → cobre → TIPO_EXAME ← é requerido em ← SOLICITACAO_EXAME
-
-Para o laboratório L, selecionar os tipos cobertos para os quais não existe solicitação entre agora − 30 dias e agora. O filtro temporal usa dataHoraSolicitacao, não a data agendada. Consideram-se pedidos na holding, mesmo ainda não agendados.
-
-## Q2 · Primeiras consultas e retornos de X
-
-**Caminho:** PACIENTE → recebe → ATENDIMENTO → CONSULTA
-
-Selecionar o paciente X por idPaciente e listar as consultas, agrupadas por tipoConsulta ∈ {primeira, retorno}, com a dataHoraAtendimento herdada.
-
-## Q3 · Solicitações de internação não agendadas
-
-**Caminho:** CONSULTA → origina → SOLICITACAO_INTERNACAO → é agendada como → INTERNACAO
-
-Selecionar solicitações sem ocorrência associada de INTERNACAO. A participação (0,1) permite guardar o pedido antes do agendamento.
-
-## Q4 · Turnos de A na ala Z e substitutos
-
-**Caminho:** ENFERMEIRO ⊆ FUNCIONARIO → é titular de → PERIODO_TRABALHO ← recebe ← ALA; PERIODO → registra → SUBSTITUICAO ← substitui em ← ENFERMEIRO
-
-Filtrar o titular A e a ala Z; listar inicioPrevisto e fimPrevisto. Para cada período, apresentar substituições, intervalos efetivos e o enfermeiro substituto. O titular continua preservado, inclusive quando o substituto vem de outro hospital.
-
-## Q5 · Salas cirúrgicas no 6º ou 9º andar
-
-**Caminho:** HOSPITAL → possui → ALA → ALA_CIRURGIA → contém → SALA_OPERACAO
-
-Filtrar andar de ALA_CIRURGIA em {6,9}; listar suas salas e hospitais. O andar pertence à ala porque todas as suas salas ocupam um único andar.
-
-## Q6 · Ocupantes do leito L em março/2026
-
-**Caminho:** LEITO → é designado a → INTERNACAO ⊆ ATENDIMENTO ← recebe ← PACIENTE
-
-Selecionar codigoLeito = L e ocupações que intersectam [01/03/2026 00:00, 01/04/2026 00:00): inicioOcupacao < 01/04 e (fimOcupacao ausente ou fimOcupacao > 01/03). Excluir internações sem início efetivo e listar os pacientes.
+| Pergunta | Caminho percorrido no modelo | Resposta obtida |
+|---|---|---|
+| **Q1 — Quais exames cobertos pelo laboratório L não foram requeridos nos últimos 30 dias?** | LABORATORIO → cobre → TIPO_EXAME → é requerido em → SOLICITACAO_EXAME | Primeiro, identifico os tipos de exame cobertos pelo laboratório L. Depois, verifico as solicitações pela **dataHoraSolicitacao** e seleciono os tipos que não possuem nenhuma solicitação nos últimos 30 dias. Assim, encontro os exames oferecidos pelo laboratório que não foram requeridos nesse período, incluindo aqueles que nunca foram solicitados. |
+| **Q2 — Quais são as primeiras consultas e as consultas de retorno de certo paciente X?** | PACIENTE → recebe → ATENDIMENTO → CONSULTA | Localizo o paciente X pelo **idPaciente** e identifico seus atendimentos classificados como consulta. Em seguida, separo as consultas pelo atributo **tipoConsulta**, que indica se são primeiras consultas ou retornos, e apresento a data e a hora de cada atendimento. |
+| **Q3 — Quais solicitações de internação ainda não foram agendadas?** | SOLICITACAO_INTERNACAO → é agendada como → INTERNACAO | Verifico quais solicitações de internação ainda não estão associadas a uma ocorrência de **INTERNACAO**. Como essa associação é opcional para a solicitação, o modelo permite registrar o pedido antes de existir um agendamento. Portanto, as solicitações sem internação associada são aquelas que ainda aguardam agendamento. |
+| **Q4 — Quais foram os dias e períodos de trabalho do enfermeiro A na ala Z? Ele foi substituído? Por quem?** | ENFERMEIRO ⊆ FUNCIONARIO → é titular de → PERIODO_TRABALHO ← recebe ← ALA; PERIODO_TRABALHO → registra → SUBSTITUICAO ← substitui em ← ENFERMEIRO | Identifico os períodos em que o enfermeiro A era o titular da escala na ala Z, utilizando **inicioPrevisto** e **fimPrevisto** para obter os dias e horários. Depois, verifico se existem substituições vinculadas a esses períodos. Quando houver, apresento o enfermeiro substituto e o intervalo efetivo da substituição. O titular original permanece registrado, mesmo quando o substituto pertence a outro hospital. |
+| **Q5 — Existem salas de cirurgia no 6º ou no 9º andar?** | HOSPITAL → possui → ALA → ALA_CIRURGIA → contém → SALA_OPERACAO | Consulto o atributo **andar** das alas de cirurgia e seleciono aquelas localizadas no 6º ou no 9º andar. Depois, identifico as salas de operação pertencentes a essas alas. Se houver salas associadas, a resposta será positiva, sendo possível apresentar seus identificadores e os respectivos hospitais. |
+| **Q6 — Quais pacientes ocuparam o leito L durante março de 2026?** | LEITO → é designado a → INTERNACAO ⊆ ATENDIMENTO ← recebe ← PACIENTE | Localizo o leito L pelo **codigoLeito** e verifico as internações com ocupação efetiva durante março de 2026. Seleciono aquelas cujo início ocorreu antes de **01/04/2026** e cujo término ocorreu depois de **01/03/2026**, incluindo ocupações ainda em andamento. Assim, também considero pacientes que entraram antes de março e permaneceram no leito durante parte do mês. Por fim, identifico os pacientes associados a essas internações, desconsiderando agendamentos que não chegaram a iniciar a ocupação. |
 
 ## Premissas e restrições
 
